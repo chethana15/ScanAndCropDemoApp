@@ -22,8 +22,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var panGestureRecogniser3: UIPanGestureRecognizer!
     @IBOutlet weak var imageAfterAlteration: UIImageView!
     @IBOutlet var panGestureRecogniser4: UIPanGestureRecognizer!
-    let dottedLine = CAShapeLayer()
-    let path = CGMutablePath()
+    let shapeLayer = CAShapeLayer()
     var pdfDocument = PDFDocument()
     var x1 = Double()
     var y1 = Double()
@@ -33,6 +32,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var y3 = Double()
     var x4 = Double()
     var y4 = Double()
+    let path = UIBezierPath()
     override func viewDidLoad() {
         super.viewDidLoad()
         view1.backgroundColor = .red
@@ -63,32 +63,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         y4 = view4Center.y
         print("....x:\(x4)...y:\(y4)")
 
-
-        
-//        let dottedLineView1 = ViewWithDottedLine(firstView: view1, secondView: view2)
-//        dottedLineView1.backgroundColor = .black
-//        transparentView.addSubview(dottedLineView1)
-//        let dottedLineView2 = ViewWithDottedLine(firstView: view2, secondView: view3)
-//        dottedLineView2.backgroundColor = .black
-//        transparentView.addSubview(dottedLineView2)
-//        let dottedLineView3 = ViewWithDottedLine(firstView: view3, secondView: view4)
-//        dottedLineView3.backgroundColor = .black
-//        transparentView.addSubview(dottedLineView3)
-//        let dottedLineView4 = ViewWithDottedLine(firstView: view4, secondView: view1)
-//        dottedLineView4.backgroundColor = .black
-//        transparentView.addSubview(dottedLineView4)
-//        let dottedLineView = DottedLineView1(view1: view1, view2: view2, view3: view3, view4: view4)
-//        dottedLineView.backgroundColor = .black
-//        transparentView.addSubview(dottedLineView)
-//        setupDottedLine()
-//        dottedLine.lineWidth = 1
-        dottedLine.strokeColor = UIColor.black.cgColor
-        dottedLine.lineDashPattern = [5, 5]
         path.move(to: view1.center)
         path.addLine(to: view2.center)
-        dottedLine.path = path
-//        view1.layer.addSublayer(dottedLine)
-//        view2.layer.addSublayer(dottedLine)
+        shapeLayer.path = path.cgPath
+        shapeLayer.strokeColor = UIColor.black.cgColor
+        shapeLayer.lineWidth = 4.0
+        transparentView.layer.backgroundColor = UIColor.clear.cgColor
+        shapeLayer.lineDashPattern = [5, 5]
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        transparentView.layer.addSublayer(shapeLayer)
+        updateShapeLayerPath()
+
     }
     override func viewWillAppear(_ animated: Bool) {
         let path = UIBezierPath()
@@ -98,34 +83,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         path.addLine(to: CGPoint(x: x4, y: y4))
 
         path.close()
-
-//        let maskLayer = CAShapeLayer()
-//        maskLayer.path = path.cgPath
-//        imageAfterAlteration.layer.mask = maskLayer
     }
-    
-    func setupDottedLine() {
-            // Set the line width and stroke color for the layer
-            dottedLine.lineWidth = 1
-            dottedLine.strokeColor = UIColor.black.cgColor
+    func updateShapeLayerPath() {
+        let path = UIBezierPath()
+        path.move(to: view1.center)
+        path.addLine(to: view2.center)
+        path.addLine(to: view4.center)
+        path.addLine(to: view3.center)
+        path.addLine(to: view1.center)
+        
+        // Set the path of the shape layer
+        shapeLayer.path = path.cgPath
+    }
 
-            // Set the line dash pattern for the layer
-            dottedLine.lineDashPattern = [5, 5]
-
-            // Add the layer as a sublayer to one of the views
-            view1.layer.addSublayer(dottedLine)
-        }
-    func updateDottedLinePath() {
-          // Create a new path for the line
-          let path = CGMutablePath()
-
-          // Add the line to the path, starting at the center of the first view and ending at the center of the second view
-          path.move(to: view1.center)
-          path.addLine(to: view2.center)
-
-          // Set the path for the layer
-          dottedLine.path = path
-      }
     
     
     @IBAction func startCaptureTapped(_ sender: Any) {
@@ -198,11 +168,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             x1 = changeX
             y1 = changeY
             sender.setTranslation(CGPoint.zero, in: sender.view)
+            updateShapeLayerPath()
             
         }
     }
     
     @IBAction func panGesture2Dragged(_ sender: UIPanGestureRecognizer) {
+//        shapeLayer.removeFromSuperlayer()
         if(sender.state == .began || sender.state == .changed){
             let translation = sender.translation(in: sender.view)
             let changeX = (sender.view?.center.x)! + translation.x
@@ -214,6 +186,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             x2 = changeX
             y2 = changeY
             sender.setTranslation(CGPoint.zero, in: sender.view)
+
+            updateShapeLayerPath()
         }
     }
     
@@ -229,6 +203,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             x3 = changeX
             y3 = changeY
             sender.setTranslation(CGPoint.zero, in: sender.view)
+            updateShapeLayerPath()
         }
     }
     
@@ -244,6 +219,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             x4 = changeX
             y4 = changeY
             sender.setTranslation(CGPoint.zero, in: sender.view)
+            updateShapeLayerPath()
         }
     }
     
