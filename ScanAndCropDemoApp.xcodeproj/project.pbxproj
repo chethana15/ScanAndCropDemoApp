@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		697699472954101800CEE81F /* circleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697699462954101800CEE81F /* circleView.swift */; };
+		69769949295443D100CEE81F /* ImageViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69769948295443D100CEE81F /* ImageViewVC.swift */; };
 		69908B0D294E2BAD007A75A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69908B0C294E2BAD007A75A3 /* AppDelegate.swift */; };
 		69908B0F294E2BAD007A75A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69908B0E294E2BAD007A75A3 /* SceneDelegate.swift */; };
 		69908B11294E2BAD007A75A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69908B10294E2BAD007A75A3 /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		697699462954101800CEE81F /* circleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = circleView.swift; sourceTree = "<group>"; };
+		69769948295443D100CEE81F /* ImageViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewVC.swift; sourceTree = "<group>"; };
 		69908B09294E2BAD007A75A3 /* ScanAndCropDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScanAndCropDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69908B0C294E2BAD007A75A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69908B0E294E2BAD007A75A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +68,9 @@
 				69908B0E294E2BAD007A75A3 /* SceneDelegate.swift */,
 				69908B10294E2BAD007A75A3 /* ViewController.swift */,
 				699C51B52950561E002F64A5 /* MovablePointsView.swift */,
+				697699462954101800CEE81F /* circleView.swift */,
 				69908B20294FB36A007A75A3 /* PdfVC.swift */,
+				69769948295443D100CEE81F /* ImageViewVC.swift */,
 				69908B12294E2BAD007A75A3 /* Main.storyboard */,
 				69908B15294E2BB0007A75A3 /* Assets.xcassets */,
 				69908B17294E2BB0007A75A3 /* LaunchScreen.storyboard */,
@@ -145,9 +151,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				69908B11294E2BAD007A75A3 /* ViewController.swift in Sources */,
+				69769949295443D100CEE81F /* ImageViewVC.swift in Sources */,
 				699C51B62950561E002F64A5 /* MovablePointsView.swift in Sources */,
 				69908B21294FB36A007A75A3 /* PdfVC.swift in Sources */,
 				69908B0D294E2BAD007A75A3 /* AppDelegate.swift in Sources */,
+				697699472954101800CEE81F /* circleView.swift in Sources */,
 				69908B0F294E2BAD007A75A3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
